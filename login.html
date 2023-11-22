@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Website Buku Novel &amp; Komik</title>
+    <link rel="stylesheet" href="style.css">
+    
+<style type="text/css" id="dcoder_stylesheet">
+        body {
+            background-image: url('background_comic.jpg'); /* Ganti 'background_comic.jpg' dengan nama gambar komik Anda */
+            background-size:  cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+        }
+
+        header {
+            text-align: center;
+    padding: 50px;
+    background-color: rgba(53, 70, 92, 0.8); 
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+        #login-form {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            width: 300px;
+            margin: auto;
+            text-align: center;
+        }
+
+        #login-form h2 {
+            margin-bottom: 20px;
+        }
+
+        #login-form label {
+            display: block;
+            margin: 10px 0;
+        }
+
+        #login-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        #login-form button {
+            background-color: #35465C;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #login-form button:hover {
+            background-color: #293B4A;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+ </style></head>
+<body>
+    <header>
+        <h1>Selamat Datang di Website Buku Novel &amp; Komik</h1>
+    </header>
+
+    <!-- Form Login -->
+    <section id="login-form">
+        <h2>Masuk ke Akun Anda</h2>
+        <form action="proses_login.php" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Masuk</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>© 2023 Website Buku Novel &amp; Komik</p>
+    </footer>
+
+</body></html>

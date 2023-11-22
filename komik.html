@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en"> 
+ <head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>Daftar Komik</title> 
+ <style type="text/css" id="dcoder_stylesheet">body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    h2 {
+      margin-bottom: 10px;
+    }
+    #daftarNovel, #formNovel {
+      margin-bottom: 20px;
+    }
+    input[type="text"], textarea {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 5px;
+    }
+    button {
+      padding: 8px 15px;
+      cursor: pointer;
+    }
+    .novel {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    header {
+      background-color: #35465C;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+    }
+    footer {
+      background-color: #35465C;
+      color: #fff;
+      padding: 10px 0;
+      text-align: center;
+    }
+    
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+}</style></head> 
+ <body> 
+  <header> 
+   <h1>Selamat Datang di Website Buku Novel &amp; Komik</h1> 
+   <nav> 
+    <ul> 
+     <li><a href="novel.html">Novel</a></li> 
+     <li><a href="halaman_utama.html">Menu Utama</a></li> 
+    </ul> 
+   </nav> 
+  </header> 
+  <h2>Daftar Komik</h2> 
+  <div id="daftarKomik"></div> 
+  <h2>Tambah Komik Baru</h2> 
+  <form id="formKomik"> 
+   <input type="text" id="judulKomik" placeholder="Judul" required> 
+   <input type="text" id="pengarangKomik" placeholder="Pengarang" required> <textarea id="sinopsisKomik" placeholder="Sinopsis" required></textarea> <button type="submit">Tambah Komik</button> 
+  </form> 
+  <script>
+        const baseURL = 'http://localhost/komik.php';
+
+        function tampilkanDaftarKomik() {
+            fetch(baseURL)
+                .then(response => response.json())
+                .then(data => {
+                    const daftarKomikElement = document.getElementById('daftarKomik');
+                    daftarKomikElement.innerHTML = '';
+
+                    data.forEach(komik => {
+                        const komikElement = document.createElement('div');
+                        komikElement.innerHTML = `
+                            <p><strong>Judul:</strong> ${komik.judul}</p>
+                            <p><strong>Pengarang:</strong> ${komik.pengarang}</p>
+                            <p><strong>Sinopsis:</strong> ${komik.sinopsis}</p>
+                            <button onclick="hapusKomik(${komik.id})">Hapus</button>
+                        `;
+                        daftarKomikElement.appendChild(komikElement);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        tampilkanDaftarKomik();
+
+        document.getElementById('formKomik').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const judul = document.getElementById('judulKomik').value;
+            const pengarang = document.getElementById('pengarangKomik').value;
+            const sinopsis = document.getElementById('sinopsisKomik').value;
+
+            fetch(baseURL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ judul, pengarang, sinopsis })
+            })
+            .then(() => {
+                tampilkanDaftarKomik();
+                document.getElementById('formKomik').reset();
+            })
+            .catch(error => console.error('Error:', error));
+        });
+
+        function hapusKomik(id) {
+            fetch(`${baseURL}?id=${id}`, {
+                method: 'DELETE'
+            })
+            .then(() => {
+                tampilkanDaftarKomik();
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script> 
+  <footer> 
+   <p>© 2023 Website Buku Novel &amp; Komik by Parid Hadiansyah</p> 
+  </footer> 
+ 
+</body></html>
+  </footer> 
+ 
+</body></html>
